@@ -2,6 +2,12 @@ import flatpickr from 'flatpickr';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import 'flatpickr/dist/flatpickr.min.css';
 
+const notifyOptions = {
+  position: 'center-center',
+  backOverlay: true,
+  clickToClose: true,
+};
+
 const startBtnRef = document.querySelector('[data-start]');
 const timerRef = document.querySelector('.timer');
 
@@ -17,11 +23,7 @@ const options = {
   onClose(selectedDates) {
     TIMER_DEADLINE = selectedDates[0];
     if (selectedDates[0] <= new Date()) {
-      Notify.failure('Please choose a date in the future', {
-        position: 'center-center',
-        backOverlay: true,
-        clickToClose: true,
-      });
+      Notify.failure('Please choose a date in the future', notifyOptions);
       startBtnRef.setAttribute('disabled', 'disabled');
     } else {
       startBtnRef.removeAttribute('disabled');
@@ -41,11 +43,7 @@ const timer = {
 
       if (delta <= 1000) {
         clearInterval(this.intervalId);
-        Notify.success('Countdown END', {
-          position: 'center-center',
-          backOverlay: true,
-          clickToClose: true,
-        });
+        Notify.success('Countdown END', notifyOptions);
       }
 
       const data = this.convertMs(delta);
@@ -54,11 +52,7 @@ const timer = {
       });
     }, 1000);
     this.getReffs(ref);
-    Notify.success('Countdown START', {
-      position: 'center-center',
-      backOverlay: true,
-      clickToClose: true,
-    });
+    Notify.success('Countdown START', notifyOptions);
   },
 
   twoCharacterNumber(value) {
