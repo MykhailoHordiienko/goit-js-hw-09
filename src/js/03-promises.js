@@ -10,6 +10,8 @@ const notifyOptions = {
 let delay = 0;
 let step = 0;
 let amount = 0;
+let delayArr = [];
+window.alert('wefsdf');
 
 const delayRef = document.querySelector('[name="delay"]');
 const stepRef = document.querySelector('[name="step"]');
@@ -26,6 +28,8 @@ function onSubmitClick(evnt) {
   console.log('submit');
   for (let i = 1; i <= amount; i++) {
     let deleyFinal = Number(delay) + Number(step);
+    delayArr.push(step);
+
     createPromise(i, deleyFinal);
   }
 }
@@ -33,8 +37,8 @@ function onSubmitClick(evnt) {
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
   if (shouldResolve) {
-    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
   } else {
-    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+    // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
   }
 }
